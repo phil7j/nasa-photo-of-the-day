@@ -8,6 +8,7 @@ import { RingLoader } from 'react-spinners';
 function App() {
   const [data, setData] = useState({})
   const [date, setDate] = useState('')
+  const [todaysDate, setTodaysDate] = useState('')
 
   useEffect( ()=> {
     fetch(`https://api.nasa.gov/planetary/apod?api_key=KAPw9jnNWGfetGNA5hfushESHKrcFg82XxZ1odgR${date}`)
@@ -20,6 +21,9 @@ function App() {
       .catch(err => console.log("COMPONENT MOUNTED, BUT THERE'S A PROBLEM", err))
     }, [date])
 
+  useEffect( ()=> {
+
+  }, [date])
   return (
     <div className="App">
 
