@@ -1,32 +1,74 @@
-import React, {useState} from 'react'
 
-function DateForm(props) {
-    const [day, setDay] = useState('')
-    const [month, setMonth] = useState('')
-    const [year, setYear] = useState('')
+import React, {useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormGroup';
 
-    const dateHandler = ()=> {
-        const newDate = `&date=${year}-${month}-${day}`
+
+export default function DateForm(props) {
+  const classes = useStyles();
+  const [date, setDate] = useState(props.data.date)
+
+     const clearDate = ()=> {
+        setDate(props.data.date);
+        props.setDate('');
+        }
+
+    const dateHandler = (value)=> {
+        const newDate = `&date=${value}`
         console.log(newDate);
         props.setDate(newDate);
         props.setData({});
-  }
-    const clearDate = ()=> {
-        setDay('');
-        setMonth('');
-        setYear('');
-        props.setDate('');
     }
-    return (
-        <div>
-            <h5>View A Different Day:</h5>
-            <input onChange={e => setDay(e.target.value)} value={day} placeholder="Day"/>
-            <input onChange={e => setMonth(e.target.value)} value={month} placeholder="Month"/>
-            <input onChange={e => setYear(e.target.value)} value={year} placeholder="Year"/>
-            <button onClick={dateHandler}>View</button>
-            <button onClick={clearDate}>Back to Today</button>
-        </div>
-    )
+  return (
+      <>
+    <FormControl className={classes.form}>
+        <form className={classes.container} noValidate>
+        <TextField
+            id="date"
+            label="Date"
+            type="date"
+            defaultValue={date}
+            // value={props.date}
+            onChange={e => dateHandler(e.target.value)}
+            className={classes.textField}
+            InputLabelProps={{
+            shrink: true,
+            }}
+        />
+        </form>
+        <Button variant="contained" color="primary" onClick={clearDate} className={classes.button}>
+        Back to Today
+        </Button>
+    </FormControl >
+  </>
+  );
 }
 
-export default DateForm
+
+const useStyles = makeStyles(theme => ({
+    container: {
+      width: '400px',
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 200,
+      color: 'white',
+      background: 'white',
+    },
+    button: {
+        margin: theme.spacing(1),
+        width: '150px',
+        color: 'white',
+
+      },
+    form: {
+        flexGrow: '1',
+        display: 'flex',
+    }
+
+  }));
