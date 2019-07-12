@@ -23,13 +23,14 @@ export default function DateForm(props) {
     }
   return (
       <>
+      {console.log(props.data.date)}
     <FormControl className={classes.form}>
         <form className={classes.container} noValidate>
         <TextField
             id="date"
             label="Date"
             type="date"
-            defaultValue={date}
+            defaultValue={props.data.date}
             // value={props.date}
             onChange={e => dateHandler(e.target.value)}
             className={classes.textField}
