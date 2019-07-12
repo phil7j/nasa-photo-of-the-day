@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormGroup';
+import Box from '@material-ui/core/Box';
 
 
 export default function DateForm(props) {
@@ -24,7 +24,7 @@ export default function DateForm(props) {
   return (
       <>
       {console.log(props.data.date)}
-    <FormControl className={classes.form}>
+    <Box className={classes.form}>
         <form className={classes.container} noValidate>
         <TextField
             id="date"
@@ -42,7 +42,7 @@ export default function DateForm(props) {
         <Button variant="contained" color="primary" onClick={clearDate} className={classes.button}>
         Back to Today
         </Button>
-    </FormControl >
+    </Box>
   </>
   );
 }
@@ -68,8 +68,9 @@ const useStyles = makeStyles(theme => ({
 
       },
     form: {
-        flexGrow: '1',
         display: 'flex',
+        justifyContent: 'right',
+
     }
 
   }));

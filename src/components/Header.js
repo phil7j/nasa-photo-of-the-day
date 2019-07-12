@@ -15,8 +15,8 @@ function Header(props) {
          <div className={classes.root}>
          <AppBar position="fixed" color="default" className={classes.appbar}>
            <Toolbar>
-             <Typography variant="h6" color="inherit">
-             Astronomy Picture of the Day
+             <Typography variant="h4" color="inherit" className={classes.title}>
+                NASA
              </Typography>
              <DateForm date={props.date} setDate={props.setDate} setData={props.setData} data={props.data}/>
            </Toolbar>
@@ -29,9 +29,13 @@ const useStyles = makeStyles({
     root: {
       flexGrow: 1,
     },
+    title: {
+        flexGrow: 1,
+    },
     appbar: {
-        background: 'black',
-        color: 'white',
+        background: 'white',
+        color: 'black',
+        display: 'flex',
     }
   });
 
